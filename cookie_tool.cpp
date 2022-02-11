@@ -25,18 +25,7 @@ int main(int argc, char* argv[]) {
     return 0;
   }
   inputFile = argv[optind]; // get input file
-
-
-  /* Open and parse CSV file */
-  std::map<std::string, int> cookies;
-  std::fstream inputData;
-  inputData.open(inputFile, std::fstream::in);
-  if(parseCookieData(cookies, inputData, date) == -1) return 0;
-
-  std::vector<std::string> mostActive;
-  getMostActive(cookies, mostActive);
-  for(auto it = mostActive.begin(); it != mostActive.end(); it++) 
-    std::cout << *it << "\n";
+  getResults(inputFile, date, 0);
 
   return 0;
 }

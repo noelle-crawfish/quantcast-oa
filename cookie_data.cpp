@@ -48,3 +48,19 @@ void getMostActive(std::map<std::string, int> &cookies, std::vector<std::string>
     } else if(it->second == maxCount) mostActive.push_back(it->first);
   }
 }
+
+std::vector<std::string> getResults(std::string inputFile, std::string date, int silent) {
+  std::map<std::string, int> cookies;
+  std::vector<std::string> mostActive;
+  std::fstream inputData;
+  inputData.open(inputFile, std::fstream::in);
+  if(parseCookieData(cookies, inputData, date) == -1) return mostActive;
+
+  getMostActive(cookies, mostActive);
+  if(!silent) {
+    for(auto it = mostActive.begin(); it != mostActive.end(); it++) 
+      std::cout << *it << "\n";
+  }
+
+  return mostActive;
+}
